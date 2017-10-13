@@ -42,10 +42,7 @@ SandboxSpawner(div, ChildSandbox)((path, script, argv) => {
     try {
       Function("process", script)(process);
     } catch (error) {
-      // debugger;
-      // debugger;
       process.stderr.write(error.stack+"\n", "utf8");
-      
       child.kill("SIGTERM");
     }
   }, 0);
