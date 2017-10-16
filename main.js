@@ -2,6 +2,7 @@
 const StdioWidget = require("stdio-widget");
 const ToggleWidget = require("toggle-widget");
 const SandboxEditor = require("sandbox-editor");
+const ParseArgv = require("./parse-argv.js");
 
 module.exports = (container, sandbox, options) => {
   let child = null;
@@ -27,7 +28,7 @@ module.exports = (container, sandbox, options) => {
       child.kill();
       child = null;
     } else {
-      child = spawn(editor.getPath(), editor.getScript(), input.value ? input.value.split(/\s+/g) : []);
+      child = spawn(editor.getPath(), editor.getScript(), ParseArgv(input.value));
       child.addListener("exit", update);
       stdio(child.stdin, child.stdout, child.stderr);
     }
@@ -44,7 +45,8 @@ module.exports = (container, sandbox, options) => {
   ((() => {
     div1.style.marginRight = "10px";
     div2.style.minWidth = "200px";
-    div2.style.height = "0px"; // flex
+    div2.style.height = "0px"; // avoid growth inside flex container
+    div2.style.width = "0px";  // avoid growth inside flex container
     div2.style.resize = "both";
     div2.style.flexGrow = "1";
     div3.style.flexGrow = "1";
