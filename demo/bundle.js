@@ -54,7 +54,7 @@ SandboxSpawner(div, ChildSandbox, {
 const StdioWidget = require("stdio-widget");
 const ToggleWidget = require("toggle-widget");
 const SandboxEditor = require("sandbox-editor");
-const ParseArgv = require("./parse-argv");
+const ParseArgv = require("./parse-argv.js");
 
 module.exports = (container, sandbox, options) => {
   let child = null;
@@ -97,8 +97,8 @@ module.exports = (container, sandbox, options) => {
   ((() => {
     div1.style.marginRight = "10px";
     div2.style.minWidth = "200px";
-    div2.style.height = "0px"; // flex
-    // div2.style.width = "0px"; // flex
+    div2.style.height = "0px"; // avoid growth inside flex container
+    div2.style.width = "0px";  // avoid growth inside flex container
     div2.style.resize = "both";
     div2.style.flexGrow = "1";
     div3.style.flexGrow = "1";
@@ -135,7 +135,7 @@ module.exports = (container, sandbox, options) => {
 
 };
 
-},{"./parse-argv":14,"sandbox-editor":9,"stdio-widget":11,"toggle-widget":12}],4:[function(require,module,exports){
+},{"./parse-argv.js":14,"sandbox-editor":9,"stdio-widget":11,"toggle-widget":12}],4:[function(require,module,exports){
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
