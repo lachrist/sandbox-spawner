@@ -3,16 +3,17 @@ const StdioWidget = require("stdio-widget");
 const ToggleWidget = require("toggle-widget");
 const SandboxEditor = require("sandbox-editor");
 
-module.exports = (container, sandbox) => {
+module.exports = (container, sandbox, options) => {
   let child = null;
   let spawn = null;
   const input = document.createElement("input");
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");
   const div3 = document.createElement("div");
-  const toggle = ToggleWidget(div1, {colors:["green", "red"]});
   const stdio = StdioWidget(div2);
+  const toggle = ToggleWidget(div1, {colors:["green", "red"]});
   const editor = SandboxEditor(div3, sandbox);
+  editor.setOptions(options || {});
 
   const update = () => {
     child = null;
@@ -42,7 +43,8 @@ module.exports = (container, sandbox) => {
 
   ((() => {
     div1.style.marginRight = "10px";
-    div2.style.minWidth = "300px";
+    div2.style.minWidth = "200px";
+    div2.style.height = "0px";
     div2.style.resize = "both";
     div2.style.flexGrow = "1";
     div3.style.flexGrow = "1";

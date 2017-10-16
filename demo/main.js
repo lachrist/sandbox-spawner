@@ -15,7 +15,10 @@ const autopipe = () => new Stream.Duplex({
   decodeStrings: false,
   write: autopush
 });
-SandboxSpawner(div, ChildSandbox)((path, script, argv) => {
+SandboxSpawner(div, ChildSandbox, {
+  minLines: 8,
+  maxLines: 16
+})((path, script, argv) => {
   const child = new Events();
   child.kill = kill;
   child.on("exit", () => { child.stdin.end() });
