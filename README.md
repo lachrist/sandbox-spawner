@@ -12,4 +12,15 @@ Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-sp
     * `path :: string`
     * `script :: string`
     * `argv :: [string]`
-    * `child :: child_process.ChildProcess`
+    * `child :: sandbox-spawn.Child | Worker`
+
+## `Child :: events.EventEmitter`
+
+* `stdin :: stream.Writable`
+* `stdout :: stream.Readable`
+* `stderr :: stream.Redable`
+* `child.kill(signal)`
+  * `signal :: string`
+* Event `exit`
+  * `code :: number`
+  * `signal :: string`

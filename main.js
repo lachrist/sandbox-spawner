@@ -2,9 +2,11 @@
 const StdioWidget = require("stdio-widget");
 const ToggleWidget = require("toggle-widget");
 const SandboxEditor = require("sandbox-editor");
+const ChildWorker = require("./child-worker.js");
 const ParseArgv = require("./parse-argv.js");
 
 module.exports = (container, sandbox) => {
+
   let child = null;
   let spawn = null;
   const input = document.createElement("input");
@@ -28,6 +30,8 @@ module.exports = (container, sandbox) => {
       child = null;
     } else {
       child = spawn(editor.getPath(), editor.getScript(), ParseArgv(input.value));
+      if (child instanceof Worker)
+        child = ChildWorker(child);
       child.addListener("exit", update);
       stdio(child.stdin, child.stdout, child.stderr);
     }

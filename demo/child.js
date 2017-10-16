@@ -1,6 +1,6 @@
-process.stdout.write(JSON.stringify(process.argv)+"\n");
 require("./error.js");
-process.stdin.setEncoding("utf8");
-process.stdin.on("data", function (data) {
-  process.stdout.write(JSON.stringify(data)+"\n");
+self.postMessage(PATH+"\n");
+self.postMessage(JSON.stringify(ARGV)+"\n");
+self.addEventListener("message", (event) => {
+  self.postMessage("echo "+JSON.stringify(event.data)+"\n");
 });
