@@ -4,7 +4,7 @@ const ToggleWidget = require("toggle-widget");
 const SandboxEditor = require("sandbox-editor");
 const ParseArgv = require("./parse-argv.js");
 
-module.exports = (container, sandbox, options) => {
+module.exports = (container, sandbox) => {
   let child = null;
   let spawn = null;
   const input = document.createElement("input");
@@ -13,7 +13,7 @@ module.exports = (container, sandbox, options) => {
   const div3 = document.createElement("div");
   const stdio = StdioWidget(div2);
   const toggle = ToggleWidget(div1, {colors:["green", "red"]});
-  const editor = SandboxEditor(div3, sandbox, options);
+  const editor = SandboxEditor(div3, sandbox);
 
   const update = () => {
     child = null;

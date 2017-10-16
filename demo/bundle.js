@@ -2,6 +2,10 @@
 module.exports = {
   "type": "browserify",
   "path": "/child.js",
+  "editor": {
+    "maxLines": 16,
+    "minLines": 8
+  },
   "modules": [
     "process",
     "buffer",
@@ -29,10 +33,7 @@ const autopipe = () => new Stream.Duplex({
   decodeStrings: false,
   write: autopush
 });
-SandboxSpawner(div, ChildSandbox, {
-  minLines: 8,
-  maxLines: 16
-})((path, script, argv) => {
+SandboxSpawner(div, ChildSandbox)((path, script, argv) => {
   const child = new Events();
   child.kill = kill;
   child.on("exit", () => { child.stdin.end() });
@@ -56,7 +57,7 @@ const ToggleWidget = require("toggle-widget");
 const SandboxEditor = require("sandbox-editor");
 const ParseArgv = require("./parse-argv.js");
 
-module.exports = (container, sandbox, options) => {
+module.exports = (container, sandbox) => {
   let child = null;
   let spawn = null;
   const input = document.createElement("input");
@@ -65,7 +66,7 @@ module.exports = (container, sandbox, options) => {
   const div3 = document.createElement("div");
   const stdio = StdioWidget(div2);
   const toggle = ToggleWidget(div1, {colors:["green", "red"]});
-  const editor = SandboxEditor(div3, sandbox, options);
+  const editor = SandboxEditor(div3, sandbox);
 
   const update = () => {
     child = null;
@@ -20145,7 +20146,7 @@ Getters.browserify = require("./browserify/getter.js");
 
 function getPath () { return this._sandbox.path }
 
-module.exports = (container, sandbox, options) => {
+module.exports = (container, sandbox) => {
   const editor = Brace.edit(container);
   editor.getPath = getPath;
   editor._sandbox = sandbox;
@@ -20155,7 +20156,7 @@ module.exports = (container, sandbox, options) => {
   editor.setTheme("ace/theme/monokai");
   editor.setValue(sandbox.content, 1);
   editor.getScript = Getters[sandbox.type];
-  editor.setOptions(options || {});
+  editor.setOptions(sandbox.editor);
   return editor;
 };
 
