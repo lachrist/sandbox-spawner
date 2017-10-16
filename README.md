@@ -1,7 +1,7 @@
 # sandbox-spawner
 
 Spawn node-like processes in the browser
-Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-spawner/5cea4562/demo/index.html).
+Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-spawner/165228b2/demo/index.html).
 
 ## `spawner = require("sandbox-spawner")(container, sandbox)`
 
