@@ -13,8 +13,7 @@ module.exports = (container, sandbox, options) => {
   const div3 = document.createElement("div");
   const stdio = StdioWidget(div2);
   const toggle = ToggleWidget(div1, {colors:["green", "red"]});
-  const editor = SandboxEditor(div3, sandbox);
-  editor.setOptions(options || {});
+  const editor = SandboxEditor(div3, sandbox, options);
 
   const update = () => {
     child = null;
