@@ -1,7 +1,7 @@
 {
   "name": "sandbox-spawner",
   "description": "Spawn node-like processes in the browser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": {
     "name": "Laurent Christophe",
     "email": "lachrist@vub.ac.be"
@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "sandbox-editor": "0.0.8",
-    "stdio-widget": "0.0.6",
+    "stdio-widget": "0.0.7",
     "toggle-widget": "0.0.3"
   },
   "main": "./main.js",

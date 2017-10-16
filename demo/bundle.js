@@ -20212,6 +20212,10 @@ module.exports = (container, options) => {
 
   const panel = document.createElement("div");
   panel.tabIndex = 0;
+  panel.style.cursor = "pointer";
+  panel.style.borderStyle = "dotted";
+  panel.style.borderWidth = "1px";
+  panel.style.borderColor = options.colors.background;
   panel.style.overflow = "scroll";
   panel.style.whiteSpace = "nowrap";
   panel.style.height = "100%";
@@ -20239,7 +20243,15 @@ module.exports = (container, options) => {
   container.appendChild(panel);
   container.appendChild(clear);
 
-  panel.onkeydown = (event) => {
+  panel.addEventListener("focusin", (event) => {
+    panel.style.borderColor = options.colors.stdin;
+  });
+
+  panel.addEventListener("focusout", (event) => {
+    panel.style.borderColor = options.colors.background;
+  });
+
+  panel.addEventListener("keydown", (event) => {
     if (event.ctrlKey) {
       if (event.key !== "Control") {
         const evt = new Event("ctrl");
@@ -20282,13 +20294,13 @@ module.exports = (container, options) => {
       last = true;
     }
     panel.scrollTop = panel.scrollHeight;
-  }
+  });
 
-  panel.onkeypress = (event) => {
+  panel.addEventListener("keypress", (event) => {
     if (!event.ctrlKey && event.charCode !== 8 && event.charCode !== 13) {
       prompt.insertBefore(document.createTextNode(String.fromCharCode(event.charCode)), cursor);
     }
-  }
+  });
 
   return (stdin, stdout, stderr) => {
     stdins.push(stdin);

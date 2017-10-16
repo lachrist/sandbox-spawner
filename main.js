@@ -44,7 +44,7 @@ module.exports = (container, sandbox, options) => {
   ((() => {
     div1.style.marginRight = "10px";
     div2.style.minWidth = "200px";
-    div2.style.height = "0px";
+    div2.style.height = "0px"; // flex
     div2.style.resize = "both";
     div2.style.flexGrow = "1";
     div3.style.flexGrow = "1";
