@@ -43,7 +43,7 @@ module.exports = (container, sandbox) => {
   div1.addEventListener("toggle", ontoggle);
   div1.disabled = true;
   input.placeholder = "argv...";
-  container.className += " spawn-widget";
+  container.className += " sandbox-spawner";
 
   ((() => {
     div1.style.marginRight = "10px";

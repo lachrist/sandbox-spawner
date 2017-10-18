@@ -1,6 +1,6 @@
 # sandbox-spawner
 
-Spawn node-like processes in the browser
+[npm module](https://www.npmjs.com/package/sandbox-spawner) to spawn node-like processes in the browser
 Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-spawner/165228b2/demo/index.html).
 
 ## `spawner = require("sandbox-spawner")(container, sandbox)`
@@ -12,7 +12,7 @@ Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-sp
     * `path :: string`
     * `script :: string`
     * `argv :: [string]`
-    * `child :: sandbox-spawn.Child | Worker`
+    * `child :: sandbox-spawner.Child | Worker`
 
 ## `Child :: events.EventEmitter`
 
