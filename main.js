@@ -7,12 +7,17 @@ const ParseArgv = require("./parse-argv.js");
 
 module.exports = (container, sandbox) => {
 
+  sandbox.editor = sandbox.editor || {};
+  sandbox.editor.minLines = sandbox.editor.minLines || 7;
+  sandbox.editor.maxLines = sandbox.editor.maxLines || 20;
+
   let child = null;
   let spawn = null;
   const input = document.createElement("input");
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");
   const div3 = document.createElement("div");
+  // div3.style.height = "200px";
   const stdio = StdioWidget(div2);
   const toggle = ToggleWidget(div1, {colors:["green", "red"]});
   const editor = SandboxEditor(div3, sandbox);
