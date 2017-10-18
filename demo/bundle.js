@@ -101,7 +101,7 @@ module.exports = (container, sandbox) => {
       child.kill();
       child = null;
     } else {
-      child = spawn(editor.getPath(), editor.getScript(), ParseArgv(input.value));
+      child = spawn(editor.getSandbox().path, editor.getScript(), ParseArgv(input.value));
       if (child instanceof Worker)
         child = ChildWorker(child);
       child.addListener("exit", update);
