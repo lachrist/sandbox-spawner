@@ -1,7 +1,7 @@
 {
   "name": "sandbox-spawner",
   "description": "Spawn node-like processes in the browser",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "author": {
     "name": "Laurent Christophe",
     "email": "lachrist@vub.ac.be"
