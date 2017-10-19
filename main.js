@@ -17,7 +17,6 @@ module.exports = (container, sandbox) => {
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");
   const div3 = document.createElement("div");
-  // div3.style.height = "200px";
   const stdio = StdioWidget(div2);
   const toggle = ToggleWidget(div1, {colors:["green", "red"]});
   const editor = SandboxEditor(div3, sandbox);
