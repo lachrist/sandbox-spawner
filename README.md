@@ -1,7 +1,7 @@
 # sandbox-spawner
 
 [NPM module](https://www.npmjs.com/package/sandbox-spawner) to spawn node-like processes in the browser
-Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-spawner/2168dd7f/demo/index.html).
+Usage [here](/demo), live demo [here](https://cdn.rawgit.com/lachrist/sandbox-spawner/3972dafe/demo/index.html).
 
 ## `spawner = require("sandbox-spawner")(container, sandbox)`
 
