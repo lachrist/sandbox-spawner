@@ -1,4 +1,4 @@
-require("./error.js");
+require("./error-interval.js");
 self.postMessage(PATH+"\n");
 self.postMessage(JSON.stringify(ARGV)+"\n");
 self.addEventListener("message", (event) => {

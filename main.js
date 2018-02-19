@@ -4,12 +4,9 @@ const ToggleWidget = require("toggle-widget");
 const SandboxEditor = require("sandbox-editor");
 const ChildWorker = require("./child-worker.js");
 const ParseArgv = require("./parse-argv.js");
+const Path = require("path");
 
-module.exports = (container, sandbox) => {
-
-  sandbox.editor = sandbox.editor || {};
-  sandbox.editor.minLines = sandbox.editor.minLines || 7;
-  sandbox.editor.maxLines = sandbox.editor.maxLines || 20;
+module.exports = (container, sandbox, duocol) => {
 
   let child = null;
   let spawn = null;
@@ -49,7 +46,7 @@ module.exports = (container, sandbox) => {
   input.placeholder = "argv...";
   container.className += " sandbox-spawner";
 
-  ((() => {
+  if (duocol) {
     div1.style.marginRight = "10px";
     div2.style.minWidth = "200px";
     div2.style.height = "0px"; // avoid growth inside flex container
@@ -59,7 +56,6 @@ module.exports = (container, sandbox) => {
     div3.style.flexGrow = "1";
     input.style.flexGrow = "1";
     input.style.fontFamily = "monospace";
-
     const div4 = document.createElement("div");
     div4.style.flexShrink = 0;
     div4.style.display = "flex";
@@ -67,25 +63,39 @@ module.exports = (container, sandbox) => {
     div4.style.marginBottom = "10px";
     div4.appendChild(div1);
     div4.appendChild(input);
-
     const div5 = document.createElement("div");
     div5.style.marginRight = "10px";
     div5.style.display = "flex";
     div5.style.flexDirection = "column";
     div5.appendChild(div4);
     div5.appendChild(div2);
-
     container.style.width = "initial";
     container.style.display = "flex";
     container.style.flexDirection = "row";
     container.appendChild(div5);
     container.appendChild(div3);
-  }) ());
+  } else {
+    div1.style.marginRight = "10px";
+    div2.style.resize = "vertical";
+    div2.style.height = "100px";
+    div3.style.marginTop = "10px";
+    div3.style.marginBottom = "10px";
+    input.style.fontFamily = "monospace";
+    const div4 = document.createElement("div");
+    div4.style.display = "flex";
+    div4.style.flexDirection = "row";
+    input.style.flexGrow = 1;
+    div4.appendChild(div1);
+    div4.appendChild(input);
+    container.appendChild(div4);
+    container.appendChild(div3);
+    container.appendChild(div2);
+  }
 
-  return (sp) => {
+  return (closure) => {
     child && child.kill();
-    div1.disabled = !sp;
-    spawn = sp;
+    div1.disabled = !closure;
+    spawn = closure;
   };
 
 };
